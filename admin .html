@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - TeleLenker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8fafc;
+            min-height: 100vh;
+        }
+
+        .admin-header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .admin-nav {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 2rem;
+        }
+
+        .admin-nav a {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .admin-nav a.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .admin-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .product-card {
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 1.5rem;
+            background: white;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 150px;
+            background: #f3f4f6;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .upload-area {
+            border: 2px dashed #d1d5db;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+
+        .upload-area:hover {
+            border-color: var(--primary);
+        }
+
+        .upload-area i {
+            font-size: 3rem;
+            color: #9ca3af;
+            margin-bottom: 1rem;
+        }
+
+        .image-preview {
+            max-width: 200px;
+            max-height: 200px;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Admin Header -->
+    <header class="admin-header">
+        <h1><i class="fas fa-cog"></i> TeleLenker Admin Panel</h1>
+        <div>
+            <a href="index.html" style="color: white; text-decoration: none;">
+                <i class="fas fa-home"></i> Back to Site
+            </a>
+        </div>
+    </header>
+
+    <!-- Admin Navigation -->
+    <nav class="admin-nav">
+        <a href="#" class="active" onclick="showTab('dashboard')">Dashboard</a>
+        <a href="#" onclick="showTab('products')">Products</a>
+        <a href="#" onclick="showTab('media')">Media Upload</a>
+        <a href="#" onclick="showTab('orders')">Orders</a>
+    </nav>
+
+    <div class="container">
+        <!-- Dashboard -->
+        <div id="dashboard" class="tab-content active">
+            <div class="admin-section">
+                <h2 style="color: var(--primary); margin-bottom: 1.5rem;">Dashboard Overview</h2>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalProducts">0</div>
+                        <div>Total Products</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalOrders">0</div>
+                        <div>Total Orders</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">$<span id="totalRevenue">0</span></div>
+                        <div>Total Revenue</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="mediaFiles">0</div>
+                        <div>Media Files</div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 2rem;">
+                    <h3 style="color: var(--primary); margin-bottom: 1rem;">Quick Actions</h3>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <button class="btn btn-primary" onclick="showTab('products')">
+                            <i class="fas fa-plus"></i> Add New Product
+                        </button>
+                        <button class="btn btn-success" onclick="showTab('media')">
+                            <i class="fas fa-upload"></i> Upload Media
+                        </button>
+                        <button class="btn btn-primary" onclick="exportData()">
+                            <i class="fas fa-download"></i> Export Data
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Products Management -->
+        <div id="products" class="tab-content">
+            <div class="admin-section">
+                <h2 style="color: var(--primary); margin-bottom: 1.5rem;">Add New Product</h2>
+                <form id="productForm">
+                    <div class="form-group">
+                        <label for="productName">Product Name</label>
+                        <input type="text" id="productName" required placeholder="e.g., ESP32-CAM AI Module">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productDescription">Description</label>
+                        <textarea id="productDescription" rows="3" required placeholder="Describe the product features and benefits"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productCategory">Category</label>
+                        <select id="productCategory" required>
+                            <option value="">Select Category</option>
+                            <option value="AI Solution">AI Solution</option>
+                            <option value="Microcontroller">Microcontroller</option>
+                            <option value="IoT Device">IoT Device</option>
+                            <option value="Security">Security System</option>
+                            <option value="GPS Solution">GPS Solution</option>
+                            <option value="Robotics">Robotics</option>
+                            <option value="Sensor">Sensor Module</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productPrice">Price ($)</label>
+                        <input type="number" id="productPrice" step="0.01" required placeholder="25.99">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productOldPrice">Old Price ($) - Optional</label>
+                        <input type="number" id="productOldPrice" step="0.01" placeholder="For discount display">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productImage">Image URL</label>
+                        <input type="url" id="productImage" placeholder="https://example.com/esp32-cam.jpg">
+                        <small style="color: #6b7280;">Paste image URL from media upload or external source</small>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Add Product
+                    </button>
+                </form>
+            </div>
+
+            <div class="admin-section">
+                <h2 style="color: var(--primary); margin-bottom: 1.5rem;">Manage Products</h2>
+                <div class="products-grid" id="adminProductsGrid">
+                    <!-- Products will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Media Upload -->
+        <div id="media" class="tab-content">
+            <div class="admin-section">
+                <h2 style="color: var(--primary); margin-bottom: 1.5rem;">Media Upload</h2>
+                
+                <div class="upload-area" id="uploadArea">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <h3>Drop files here or click to upload</h3>
+                    <p>Supported formats: JPG, PNG, GIF, MP4, AVI</p>
+                    <input type="file" id="fileInput" multiple style="display: none;" accept="image/*,video/*">
+                    <img id="imagePreview" class="image-preview" alt="Preview">
+                </div>
+
+                <div style="margin-top: 2rem;">
+                    <h4>Uploaded Media URLs:</h4>
+                    <div id="mediaUrls" style="background: #f3f4f6; padding: 1rem; border-radius: 8px; margin-top: 1rem; max-height: 300px; overflow-y: auto;">
+                        <!-- Media URLs will appear here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Orders Management -->
+        <div id="orders" class="tab-content">
+            <div class="admin-section">
+                <h2 style="color: var(--primary); margin-bottom: 1.5rem;">Order Management</h2>
+                <div id="ordersList">
+                    <p>No orders yet. Orders will appear here when customers contact you.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab management
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all nav links
+            document.querySelectorAll('.admin-nav a').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked nav link
+            event.target.classList.add('active');
+
+            // Refresh data if needed
+            if (tabName === 'dashboard') {
+                updateDashboard();
+            } else if (tabName === 'products') {
+                loadAdminProducts();
+            }
+        }
+
+        // Data management
+        let products = JSON.parse(localStorage.getItem('telelenker-products')) || [];
+        let mediaUrls = JSON.parse(localStorage.getItem('telelenker-media')) || [];
+        let orders = JSON.parse(localStorage.getItem('telelenker-orders')) || [];
+
+        // Update dashboard stats
+        function updateDashboard() {
+            document.getElementById('totalProducts').textContent = products.length;
+            document.getElementById('totalOrders').textContent = orders.length;
+            document.getElementById('mediaFiles').textContent = mediaUrls.length;
+            
+            // Calculate total revenue
+            const totalRevenue = orders.reduce((sum, order) => sum + parseFloat(order.total || 0), 0);
+            document.getElementById('totalRevenue').textContent = totalRevenue.toFixed(2);
+        }
+
+        // Load products in admin
+        function loadAdminProducts() {
+            const grid = document.getElementById('adminProductsGrid');
+            
+            if (products.length === 0) {
+                grid.innerHTML = '<p>No products added yet. Use the form above to add your first product.</p>';
+                return;
+            }
+
+            grid.innerHTML = products.map((product, index) => `
+                <div class="product-card">
+                    <div class="product-image">
+                        ${product.image ? 
+                            `<img src="${product.image}" alt="${product.name}" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\\'fas fa-image\\'></i>'">` : 
+                            '<i class="fas fa-image"></i>'
+                        }
+                    </div>
+                    <h3>${product.name}</h3>
+                    <p>${product.description}</p>
+                    <div class="product-price">$${product.price}</div>
+                    <div class="product-actions">
+                        <button class="btn btn-danger" onclick="deleteProduct(${index})">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                        <button class="btn btn-primary" onclick="editProduct(${index})">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Add new product
+        document.getElementById('productForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const newProduct = {
+                name: document.getElementById('productName').value,
+                description: document.getElementById('productDescription').value,
+                category: document.getElementById('productCategory').value,
+                price: parseFloat(document.getElementById('productPrice').value),
+                oldPrice: document.getElementById('productOldPrice').value ? 
+                         parseFloat(document.getElementById('productOldPrice').value) : null,
+                image: document.getElementById('productImage').value,
+                id: Date.now() // Unique ID
+            };
+
+            products.push(newProduct);
+            localStorage.setItem('telelenker-products', JSON.stringify(products));
+            
+            // Reset form
+            this.reset();
+            
+            // Reload products
+            loadAdminProducts();
+            updateDashboard();
+            
+            alert('Product added successfully!');
+        });
+
+        // Delete product
+        function deleteProduct(index) {
+            if (confirm('Are you sure you want to delete this product?')) {
+                products.splice(index, 1);
+                localStorage.setItem('telelenker-products', JSON.stringify(products));
+                loadAdminProducts();
+                updateDashboard();
+            }
+        }
+
+        // Edit product
+        function editProduct(index) {
+            const product = products[index];
+            document.getElementById('productName').value = product.name;
+            document.getElementById('productDescription').value = product.description;
+            document.getElementById('productCategory').value = product.category;
+            document.getElementById('productPrice').value = product.price;
+            document.getElementById('productOldPrice').value = product.oldPrice || '';
+            document.getElementById('productImage').value = product.image || '';
+            
+            // Remove this product and update form to edit mode
+            products.splice(index, 1);
+            localStorage.setItem('telelenker-products', JSON.stringify(products));
+            loadAdminProducts();
+            updateDashboard();
+            
+            const submitBtn = document.querySelector('#productForm button[type="submit"]');
+            submitBtn.innerHTML = '<i class="fas fa-save"></i> Update Product';
+            submitBtn.onclick = function(e) {
+                e.preventDefault();
+                // The form will now add as new product, which is fine
+                submitBtn.innerHTML = '<i class="fas fa-plus"></i> Add Product';
+            };
+        }
+
+        // Media upload handling
+        document.getElementById('uploadArea').addEventListener('click', function() {
+            document.getElementById('fileInput').click();
+        });
+
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            const files = e.target.files;
+            const mediaUrlsContainer = document.getElementById('mediaUrls');
+            
+            for (let file of files) {
+                // In a real application, you would upload to a server
+                // For demo, we'll create a fake URL and store file info
+                const fakeUrl = `https://telelenker.com/media/${Date.now()}_${file.name}`;
+                const fileInfo = {
+                    name: file.name,
+                    url: fakeUrl,
+                    type: file.type,
+                    size: file.size,
+                    uploadDate: new Date().toISOString()
+                };
+                
+                mediaUrls.push(fileInfo);
+                
+                const urlElement = document.createElement('div');
+                urlElement.style.marginBottom = '0.5rem';
+                urlElement.style.padding = '0.5rem';
+                urlElement.style.background = 'white';
+                urlElement.style.borderRadius = '5px';
+                urlElement.innerHTML = `
+                    <div><strong>${file.name}</strong> (${(file.size/1024).toFixed(1)} KB)</div>
+                    <div style="display: flex; margin-top: 0.5rem;">
+                        <input type="text" value="${fakeUrl}" readonly style="flex: 1; padding: 0.25rem; border: 1px solid #d1d5db; border-radius: 4px;">
+                        <button onclick="copyToClipboard('${fakeUrl}')" style="padding: 0.25rem 0.5rem; margin-left: 0.5rem; background: var(--primary); color: white; border: none; border-radius: 4px; cursor: pointer;">Copy</button>
+                    </div>
+                `;
+                mediaUrlsContainer.appendChild(urlElement);
+            }
+            
+            localStorage.setItem('telelenker-media', JSON.stringify(mediaUrls));
+            updateDashboard();
+            
+            // Reset file input
+            this.value = '';
+        });
+
+        // Copy to clipboard
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('URL copied to clipboard!');
+            });
+        }
+
+        // Export data
+        function exportData() {
+            const data = {
+                products: products,
+                media: mediaUrls,
+                orders: orders,
+                exportDate: new Date().toISOString()
+            };
+            
+            const dataStr = JSON.stringify(data, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(dataBlob);
+            link.download = `telelenker-backup-${new Date().toISOString().split('T')[0]}.json`;
+            link.click();
+        }
+
+        // Load media URLs on page load
+        function loadMediaUrls() {
+            const container = document.getElementById('mediaUrls');
+            if (mediaUrls.length === 0) {
+                container.innerHTML = '<p>No media files uploaded yet.</p>';
+                return;
+            }
+
+            container.innerHTML = mediaUrls.map(fileInfo => `
+                <div style="margin-bottom: 0.5rem; padding: 0.5rem; background: white; border-radius: 5px;">
+                    <div><strong>${fileInfo.name}</strong> (${(fileInfo.size/1024).toFixed(1)} KB)</div>
+                    <div style="display: flex; margin-top: 0.5rem;">
+                        <input type="text" value="${fileInfo.url}" readonly style="flex: 1; padding: 0.25rem; border: 1px solid #d1d5db; border-radius: 4px;">
+                        <button onclick="copyToClipboard('${fileInfo.url}')" style="padding: 0.25rem 0.5rem; margin-left: 0.5rem; background: var(--primary); color: white; border: none; border-radius: 4px; cursor: pointer;">Copy</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateDashboard();
+            loadAdminProducts();
+            loadMediaUrls();
+        });
+    </script>
+</body>
+</html>
