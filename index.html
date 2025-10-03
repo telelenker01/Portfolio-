@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TeleLenker | AI & Technology Solutions</title>
+    <title>TeleLenker | AI & Hardware Solutions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -26,104 +26,55 @@
             color: var(--text);
             background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
             min-height: 100vh;
-            transition: all 0.3s ease;
         }
 
-        /* Language Switcher */
-        .language-switcher {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
-
-        .lang-btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            transition: all 0.3s ease;
-        }
-
-        .lang-btn:hover {
-            background: var(--secondary);
-            transform: translateY(-2px);
-        }
-
-        .lang-dropdown {
-            display: none;
-            position: absolute;
-            top: 100%;
-            right: 0;
+        /* Navigation */
+        .navbar {
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-            min-width: 150px;
-            margin-top: 10px;
-            overflow: hidden;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .lang-dropdown.show {
-            display: block;
+        .nav-links {
+            display: flex;
+            gap: 2rem;
         }
 
-        .lang-option {
-            padding: 12px 15px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-            border-bottom: 1px solid #f1f5f9;
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s ease;
         }
 
-        .lang-option:hover {
-            background: var(--accent);
+        .nav-links a:hover {
+            color: var(--primary);
         }
 
-        .lang-option:last-child {
-            border-bottom: none;
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
         }
 
-        /* RTL Support */
-        body[dir="rtl"] {
-            text-align: right;
-        }
-
-        body[dir="rtl"] .service-card {
-            border-right: 4px solid var(--primary);
-            border-left: none;
-        }
-
-        body[dir="rtl"] .service-card ul {
-            padding-right: 1.2rem;
-            padding-left: 0;
+        .admin-badge {
+            background: var(--success);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-left: 1rem;
         }
 
         /* Header */
         .header {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            padding: 4rem 1rem;
+            padding: 3rem 1rem;
             text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        .header h1 {
-            font-size: 2.8rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-
-        .header p {
-            font-size: 1.3rem;
-            max-width: 800px;
-            margin: 0 auto;
-            opacity: 0.9;
         }
 
         .container {
@@ -132,72 +83,131 @@
             padding: 2rem;
         }
 
-        /* Services Grid */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .service-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border-left: 4px solid var(--primary);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            height: 100%;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-
-        .service-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .service-card h3 {
-            color: var(--primary);
-            margin: 1rem 0;
-            font-size: 1.4rem;
-        }
-
-        .service-card ul {
-            padding-left: 1.2rem;
-            margin-top: 1rem;
-        }
-
-        .service-card li {
-            margin-bottom: 0.5rem;
-        }
-
-        /* Intro Section */
-        .intro-section {
+        /* Hardware Showcase */
+        .hardware-showcase {
             background: white;
             padding: 3rem;
             border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            margin: 2rem 0;
+            margin: 3rem 0;
             text-align: center;
         }
 
-        .intro-section h2 {
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            font-size: 2rem;
+        .hardware-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
         }
 
-        .intro-section p {
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+        .hardware-item {
+            background: var(--accent);
+            padding: 2rem;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .hardware-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .hardware-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .hardware-item h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .hardware-item p {
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--primary);
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-content {
+            padding: 1.5rem;
+        }
+
+        .product-category {
+            background: var(--primary);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 0.5rem 0;
+        }
+
+        .product-old-price {
+            text-decoration: line-through;
+            color: #6b7280;
+            font-size: 1rem;
+            margin-left: 0.5rem;
+        }
+
+        .buy-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .buy-btn:hover {
+            background: var(--secondary);
         }
 
         /* Contact Section */
@@ -208,11 +218,6 @@
             border-radius: 15px;
             margin: 3rem 0;
             text-align: center;
-        }
-
-        .contact-section h2 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
         }
 
         .contact-buttons {
@@ -247,31 +252,16 @@
             background: #25D366;
         }
 
-        .direct-contact {
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.3);
+        .btn.email {
+            background: #ea4335;
         }
 
-        .direct-contact p {
-            margin: 0.5rem 0;
-            font-size: 1.1rem;
+        .btn.store {
+            background: var(--success);
         }
 
-        /* Features */
-        .features {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            margin: 2rem 0;
-        }
-
-        .feature {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 500;
+        .btn.admin {
+            background: #8b5cf6;
         }
 
         /* Footer */
@@ -283,17 +273,19 @@
             margin-top: 4rem;
         }
 
-        /* Responsive Design */
+        /* Responsive */
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
             }
             
-            .header p {
-                font-size: 1.1rem;
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
             }
             
-            .services-grid {
+            .hardware-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -306,456 +298,166 @@
                 width: 80%;
                 justify-content: center;
             }
-            
-            .features {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .language-switcher {
-                top: 10px;
-                right: 10px;
-            }
         }
     </style>
 </head>
-<body dir="ltr">
-    <!-- Language Switcher -->
-    <div class="language-switcher">
-        <button class="lang-btn" id="langBtn">
-            <i class="fas fa-globe"></i>
-            <span id="currentLang">English</span>
-            <i class="fas fa-chevron-down"></i>
-        </button>
-        <div class="lang-dropdown" id="langDropdown">
-            <div class="lang-option" data-lang="en">English</div>
-            <div class="lang-option" data-lang="ur">اردو</div>
-            <div class="lang-option" data-lang="ar">العربية</div>
-            <div class="lang-option" data-lang="de">Deutsch</div>
-            <div class="lang-option" data-lang="tr">Türkçe</div>
-            <div class="lang-option" data-lang="ms">Bahasa Melayu</div>
-            <div class="lang-option" data-lang="zh">中文</div>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">TeleLenker Solutions</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#hardware">Hardware</a>
+            <a href="#products">Products</a>
+            <a href="#contact">Contact</a>
+            <a href="admin.html" class="admin-badge">Admin Panel</a>
         </div>
-    </div>
+    </nav>
 
     <!-- Header -->
-    <header class="header">
-        <h1 data-key="header_title">TeleLenker Technology Solutions</h1>
-        <p data-key="header_subtitle">One stop for AI, IoT and complete technology integration</p>
+    <header class="header" id="home">
+        <h1>TeleLenker AI & Hardware Solutions</h1>
+        <p>Complete Plug & Play Microcontroller Solutions with Ready-to-Use Code</p>
     </header>
 
     <div class="container">
-        <!-- Introduction -->
-        <section class="intro-section">
-            <h2 data-key="intro_title">Our Promise: Quality, Transparency, and Long-term Partnership</h2>
-            <p data-key="intro_text">Every project is not just a contract, but the beginning of a long-term relationship. We work with you on partnership basis.</p>
+        <!-- Hardware Showcase -->
+        <section class="hardware-showcase" id="hardware">
+            <h2 style="color: var(--primary); margin-bottom: 2rem;">Our Microcontroller Solutions</h2>
+            <p style="margin-bottom: 2rem;">We provide complete programmed microcontrollers with custom code for your specific needs</p>
             
-            <div class="features">
-                <div class="feature" data-key="feature1">✅ 100% Satisfaction Guarantee</div>
-                <div class="feature" data-key="feature2">✅ Free Technical Consultation</div>
-                <div class="feature" data-key="feature3">✅ 24/7 Support</div>
+            <div class="hardware-grid">
+                <div class="hardware-item">
+                    <div class="hardware-icon"><i class="fas fa-microchip"></i></div>
+                    <h3>ESP32-CAM</h3>
+                    <p>WiFi camera module with AI capabilities for surveillance and monitoring</p>
+                    <div class="product-price">$25.99</div>
+                </div>
+
+                <div class="hardware-item">
+                    <div class="hardware-icon"><i class="fas fa-wifi"></i></div>
+                    <h3>NodeMCU</h3>
+                    <p>IoT development board with WiFi for smart home and automation</p>
+                    <div class="product-price">$8.99</div>
+                </div>
+
+                <div class="hardware-item">
+                    <div class="hardware-icon"><i class="fas fa-robot"></i></div>
+                    <h3>Arduino Uno</h3>
+                    <p>Versatile microcontroller for robotics and embedded systems</p>
+                    <div class="product-price">$22.50</div>
+                </div>
+
+                <div class="hardware-item">
+                    <div class="hardware-icon"><i class="fas fa-desktop"></i></div>
+                    <h3>Raspberry Pi</h3>
+                    <p>Single-board computer for complex AI and computer vision projects</p>
+                    <div class="product-price">$45.00</div>
+                </div>
+
+                <div class="hardware-item">
+                    <div class="hardware-icon"><i class="fas fa-satellite"></i></div>
+                    <h3>GPS GSM Module</h3>
+                    <p>Location tracking with cellular communication capabilities</p>
+                    <div class="product-price">$18.75</div>
+                </div>
+
+                <div class="hardware-item">
+                    <div class="hardware-icon"><i class="fas fa-car"></i></div>
+                    <h3>WiFi RC Car Kit</h3>
+                    <p>Complete RC car with microcontroller for custom programming</p>
+                    <div class="product-price">$35.99</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 2rem; padding: 1.5rem; background: #e0f2fe; border-radius: 8px;">
+                <h3 style="color: var(--primary); margin-bottom: 1rem;">🚀 Plug & Play Ready</h3>
+                <p>All our microcontrollers come with complete programming and documentation. Just plug and start using!</p>
             </div>
         </section>
 
-        <!-- Services -->
-        <section>
-            <h2 style="text-align: center; color: var(--primary); margin-bottom: 3rem; font-size: 2.2rem;" data-key="services_title">Our Services</h2>
+        <!-- Products Grid -->
+        <section id="products">
+            <h2 style="text-align: center; color: var(--primary); margin-bottom: 3rem;">Featured Products</h2>
             
-            <div class="services-grid">
-                <!-- AI Solutions -->
-                <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-robot"></i></div>
-                    <h3 data-key="service1_title">AI and Machine Learning</h3>
-                    <p data-key="service1_desc">AI model training in every language, chatbots, and intelligent systems</p>
-                    <ul>
-                        <li data-key="service1_item1">Multilingual AI model training</li>
-                        <li data-key="service1_item2">Intelligent chatbots</li>
-                        <li data-key="service1_item3">Custom search engine development</li>
-                    </ul>
-                </div>
-
-                <!-- CCTV Solutions -->
-                <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-video"></i></div>
-                    <h3 data-key="service2_title">CCTV and Security Systems</h3>
-                    <p data-key="service2_desc">AI-enhanced security systems, camera networks and monitoring</p>
-                    <ul>
-                        <li data-key="service2_item1">HD IP camera integration</li>
-                        <li data-key="service2_item2">Video analytics and AI monitoring</li>
-                        <li data-key="service2_item3">Complete network infrastructure design</li>
-                    </ul>
-                </div>
-
-                <!-- GPS Solutions -->
-                <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-satellite-dish"></i></div>
-                    <h3 data-key="service3_title">GPS and Location Systems</h3>
-                    <p data-key="service3_desc">Geofencing, location tracking and GPS based solutions</p>
-                    <ul>
-                        <li data-key="service3_item1">Geofencing solutions</li>
-                        <li data-key="service3_item2">Location based triggering</li>
-                        <li data-key="service3_item3">Real-time location tracking</li>
-                    </ul>
-                </div>
-
-                <!-- Hardware Integration -->
-                <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-microchip"></i></div>
-                    <h3 data-key="service4_title">Hardware Integration</h3>
-                    <p data-key="service4_desc">Seamless integration of all types of hardware and software</p>
-                    <ul>
-                        <li data-key="service4_item1">IoT device integration</li>
-                        <li data-key="service4_item2">Sensor network deployment</li>
-                        <li data-key="service4_item3">Embedded system development</li>
-                    </ul>
-                </div>
-
-                <!-- Web Development -->
-                <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-globe"></i></div>
-                    <h3 data-key="service5_title">Web Development</h3>
-                    <p data-key="service5_desc">Modern websites, applications and online systems</p>
-                    <ul>
-                        <li data-key="service5_item1">Professional websites</li>
-                        <li data-key="service5_item2">E-commerce platforms</li>
-                        <li data-key="service5_item3">Real-time web applications</li>
-                    </ul>
-                </div>
-
-                <!-- IP Communication -->
-                <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-phone-alt"></i></div>
-                    <h3 data-key="service6_title">IP Communication Systems</h3>
-                    <p data-key="service6_desc">IP-PBX, walkie talkie and modern communication systems</p>
-                    <ul>
-                        <li data-key="service6_item1">IP-PBX system deployment</li>
-                        <li data-key="service6_item2">VoIP integration</li>
-                        <li data-key="service6_item3">Walkie talkie networking</li>
-                    </ul>
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded dynamically from admin -->
+                <div style="grid-column: 1/-1; text-align: center; padding: 3rem;">
+                    <h3 style="color: var(--primary); margin-bottom: 1rem;">No Products Yet</h3>
+                    <p>Products will appear here once added from the admin panel.</p>
+                    <a href="admin.html" class="btn admin" style="margin-top: 1rem;">
+                        <i class="fas fa-cog"></i> Go to Admin Panel
+                    </a>
                 </div>
             </div>
         </section>
 
         <!-- Contact Section -->
-        <section class="contact-section">
-            <h2 data-key="contact_title">Discuss Your Project</h2>
-            <p data-key="contact_subtitle">From free consultation to complete implementation - we are with you</p>
+        <section class="contact-section" id="contact">
+            <h2>Start Your Project Today</h2>
+            <p>Get complete microcontroller solutions with custom programming</p>
             
             <div class="contact-buttons">
-                <a href="mailto:telelenker@gmail.com" class="btn">
-                    <i class="fas fa-envelope"></i>
-                    <span data-key="email_btn">Email Us</span>
+                <a href="mailto:telelenker@gmail.com" class="btn email">
+                    <i class="fas fa-envelope"></i> Email Us
                 </a>
                 <a href="https://wa.me/923152820296" class="btn whatsapp">
-                    <i class="fab fa-whatsapp"></i>
-                    <span data-key="whatsapp_btn">Contact on WhatsApp</span>
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="admin.html" class="btn admin">
+                    <i class="fas fa-cog"></i> Admin Panel
                 </a>
             </div>
             
-            <div class="direct-contact">
-                <p data-key="direct_contact">Direct Contact:</p>
+            <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.3);">
+                <p><strong>Direct Contact:</strong></p>
                 <p>Email: telelenker@gmail.com</p>
                 <p>WhatsApp: 00923152820296</p>
-                <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;" data-key="response_time">
-                    ⏰ Average response time: 15 minutes
-                </p>
             </div>
         </section>
     </div>
 
     <!-- Footer -->
     <footer>
-        <p data-key="footer_text">© 2023 TeleLenker Technology Solutions. All rights reserved.</p>
+        <p>© 2024 TeleLenker Technology Solutions. All rights reserved.</p>
     </footer>
 
     <script>
-        // Language translations
-        const translations = {
-            en: {
-                // Header
-                "header_title": "TeleLenker Technology Solutions",
-                "header_subtitle": "One stop for AI, IoT and complete technology integration",
-                
-                // Intro
-                "intro_title": "Our Promise: Quality, Transparency, and Long-term Partnership",
-                "intro_text": "Every project is not just a contract, but the beginning of a long-term relationship. We work with you on partnership basis.",
-                "feature1": "✅ 100% Satisfaction Guarantee",
-                "feature2": "✅ Free Technical Consultation", 
-                "feature3": "✅ 24/7 Support",
-                
-                // Services
-                "services_title": "Our Services",
-                
-                // Service 1
-                "service1_title": "AI and Machine Learning",
-                "service1_desc": "AI model training in every language, chatbots, and intelligent systems",
-                "service1_item1": "Multilingual AI model training",
-                "service1_item2": "Intelligent chatbots",
-                "service1_item3": "Custom search engine development",
-                
-                // Service 2
-                "service2_title": "CCTV and Security Systems",
-                "service2_desc": "AI-enhanced security systems, camera networks and monitoring",
-                "service2_item1": "HD IP camera integration",
-                "service2_item2": "Video analytics and AI monitoring",
-                "service2_item3": "Complete network infrastructure design",
-                
-                // Service 3
-                "service3_title": "GPS and Location Systems", 
-                "service3_desc": "Geofencing, location tracking and GPS based solutions",
-                "service3_item1": "Geofencing solutions",
-                "service3_item2": "Location based triggering",
-                "service3_item3": "Real-time location tracking",
-                
-                // Service 4
-                "service4_title": "Hardware Integration",
-                "service4_desc": "Seamless integration of all types of hardware and software",
-                "service4_item1": "IoT device integration",
-                "service4_item2": "Sensor network deployment", 
-                "service4_item3": "Embedded system development",
-                
-                // Service 5
-                "service5_title": "Web Development",
-                "service5_desc": "Modern websites, applications and online systems",
-                "service5_item1": "Professional websites",
-                "service5_item2": "E-commerce platforms",
-                "service5_item3": "Real-time web applications",
-                
-                // Service 6
-                "service6_title": "IP Communication Systems",
-                "service6_desc": "IP-PBX, walkie talkie and modern communication systems", 
-                "service6_item1": "IP-PBX system deployment",
-                "service6_item2": "VoIP integration",
-                "service6_item3": "Walkie talkie networking",
-                
-                // Contact
-                "contact_title": "Discuss Your Project",
-                "contact_subtitle": "From free consultation to complete implementation - we are with you",
-                "email_btn": "Email Us",
-                "whatsapp_btn": "Contact on WhatsApp",
-                "direct_contact": "Direct Contact:",
-                "response_time": "⏰ Average response time: 15 minutes",
-                
-                // Footer
-                "footer_text": "© 2023 TeleLenker Technology Solutions. All rights reserved."
-            },
-            ur: {
-                "header_title": "ٹیلی لنکر ٹیکنالوجی حل",
-                "header_subtitle": "AI، IoT اور مکمل ٹیکنالوجی انٹیگریشن کے لیے ایک ہی مقام",
-                "intro_title": "ہمارا وعدہ: معیار، شفافیت، اور دیرپا شراکت",
-                "intro_text": "ہر پراجیکٹ محض ایک معاہدہ نہیں، بلکہ ایک طویل المدتی تعلقات کا آغاز ہے۔ ہم آپ کے ساتھ شراکت داری کی بنیاد پر کام کرتے ہیں۔",
-                "feature1": "✅ 100% سٹسفیکشن گارنٹی",
-                "feature2": "✅ مفت تکنیکی مشاورت",
-                "feature3": "✅ 24/7 سپورٹ",
-                "services_title": "ہماری خدمات",
-                "service1_title": "AI اور مشین لرننگ",
-                "service1_desc": "ہر زبان میں AI ماڈل ٹریننگ، چیٹ بوٹس، اور انٹیلیجنٹ سسٹمز",
-                "service1_item1": "ملٹی لینگویج AI ماڈل ٹریننگ",
-                "service1_item2": "انٹیلیجنٹ چیٹ بوٹس", 
-                "service1_item3": "کسٹم سرچ انجن ڈویلپمنٹ",
-                "service2_title": "CCTV اور سیکیورٹی سسٹمز",
-                "service2_desc": "AI-انہینسڈ سیکیورٹی سسٹمز، کیمرہ نیٹ ورکس اور مانیٹرنگ",
-                "service2_item1": "HD IP کیمرہ انٹیگریشن",
-                "service2_item2": "ویڈیو اینالیٹکس اینڈ AI مانیٹرنگ",
-                "service2_item3": "مکمل نیٹ ورک انفراسٹرکچر ڈیزائن",
-                "service3_title": "GPS اور لوکیشن سسٹمز",
-                "service3_desc": "جیو فینسنگ، لوکیشن ٹریکنگ اور GPS بیسڈ سولیوشنز", 
-                "service3_item1": "جیو فینسنگ سولیوشنز",
-                "service3_item2": "لوکیشن بیسڈ ٹریگرنگ",
-                "service3_item3": "رئیل ٹائم لوکیشن ٹریکنگ",
-                "service4_title": "ہارڈویئر انٹیگریشن",
-                "service4_desc": "ہر قسم کے ہارڈویئر اور سوفٹ ویئر کا بے مثال انضمام",
-                "service4_item1": "IoT ڈیوائس انٹیگریشن",
-                "service4_item2": "سینسر نیٹ ورک ڈپلائیمنٹ",
-                "service4_item3": "ایمبیڈڈ سسٹم ڈویلپمنٹ",
-                "service5_title": "ویب ڈویلپمنٹ",
-                "service5_desc": "موڈرن ویب سائٹس، ایپلیکیشنز اور آن لائن سسٹمز",
-                "service5_item1": "پیشہ ورانہ ویب سائٹس",
-                "service5_item2": "ای کامرس پلیٹ فارمز", 
-                "service5_item3": "رئیل ٹائم ویب ایپلیکیشنز",
-                "service6_title": "IP کمیونیکیشن سسٹمز",
-                "service6_desc": "IP-PBX، واکی ٹاکی اور جدید کمیونیکیشن سسٹمز",
-                "service6_item1": "IP-PBX سسٹم ڈپلائیمنٹ",
-                "service6_item2": "VoIP انٹیگریشن",
-                "service6_item3": "واکی ٹاکی نیٹ ورکنگ",
-                "contact_title": "اپنے پراجیکٹ پر بات کریں", 
-                "contact_subtitle": "مفت مشاورت سے لے کر مکمل عمل درآمد تک - ہم آپ کے ساتھ ہیں",
-                "email_btn": "ای میل کریں",
-                "whatsapp_btn": "واٹس ایپ پر رابطہ کریں",
-                "direct_contact": "براہ راست رابطہ:",
-                "response_time": "⏰ اوسط جوابی وقت: 15 منٹ",
-                "footer_text": "© 2023 ٹیلی لنکر ٹیکنالوجی حل. تمام حقوق محفوظ ہیں۔"
-            },
-            ar: {
-                "header_title": "حلول تيلي لينكر التكنولوجية",
-                "header_subtitle": "وجهة واحدة للذكاء الاصطناعي، إنترنت الأشياء والتكامل التكنولوجي الكامل",
-                "intro_title": "وعدنا: الجودة، الشفافية، والشراكة طويلة الأمد",
-                "intro_text": "كل مشروع ليس مجرد عقد، بل بداية علاقة طويلة الأمد. نحن نعمل معك على أساس الشراكة.",
-                "feature1": "✅ ضمان الرضا 100%",
-                "feature2": "✅ استشارة تقنية مجانية",
-                "feature3": "✅ دعم على مدار 24/7",
-                "services_title": "خدماتنا",
-                "service1_title": "الذكاء الاصطناعي والتعلم الآلي",
-                "service1_desc": "تدريب نماذج الذكاء الاصطناعي بكل اللغات، روبوتات المحادثة والأنظمة الذكية",
-                "service1_item1": "تدريب نماذج الذكاء الاصطناعي متعددة اللغات",
-                "service1_item2": "روبوتات محادثة ذكية",
-                "service1_item3": "تطوير محركات بحث مخصصة",
-                "service2_title": "أنظمة الكاميرات والأمن",
-                "service2_desc": "أنظمة أمنية معززة بالذكاء الاصطناعي، شبكات الكاميرات والمراقبة",
-                "service2_item1": "دمج كاميرات IP عالية الدقة",
-                "service2_item2": "تحليلات الفيديو والمراقبة بالذكاء الاصطناعي",
-                "service2_item3": "تصميم البنية التحتية للشبكة بالكامل",
-                "service3_title": "أنظمة GPS والموقع",
-                "service3_desc": "السياج الجغرافي، تتبع الموقع وحلول تعتمد على GPS",
-                "service3_item1": "حلول السياج الجغرافي",
-                "service3_item2": "التشغيل بناء على الموقع",
-                "service3_item3": "تتبع الموقع في الوقت الحقيقي",
-                "service4_title": "دمج الأجهزة",
-                "service4_desc": "دمج سلس لجميع أنواع الأجهزة والبرامج",
-                "service4_item1": "دمج أجهزة إنترنت الأشياء",
-                "service4_item2": "نشر شبكة أجهزة الاستشعار",
-                "service4_item3": "تطوير الأنظمة المدمجة",
-                "service5_title": "تطوير الويب",
-                "service5_desc": "مواقع ويب حديثة، تطبيقات وأنظمة عبر الإنترنت",
-                "service5_item1": "مواقع ويب احترافية",
-                "service5_item2": "منصات التجارة الإلكترونية",
-                "service5_item3": "تطبيقات ويب في الوقت الحقيقي",
-                "service6_title": "أنظمة الاتصالات IP",
-                "service6_desc": "IP-PBX، اتصالات لاسلكية وأنظمة اتصالات حديثة",
-                "service6_item1": "نشر أنظمة IP-PBX",
-                "service6_item2": "دمج VoIP",
-                "service6_item3": "شبكات الاتصالات اللاسلكية",
-                "contact_title": "ناقش مشروعك",
-                "contact_subtitle": "من الاستشارة المجانية إلى التنفيذ الكامل - نحن معك",
-                "email_btn": "راسلنا عبر البريد",
-                "whatsapp_btn": "تواصل على واتساب",
-                "direct_contact": "الاتصال المباشر:",
-                "response_time": "⏰ متوسط وقت الاستجابة: 15 دقيقة",
-                "footer_text": "© 2023 حلول تيلي لينكر التكنولوجية. جميع الحقوق محفوظة."
-            },
-            de: {
-                "header_title": "TeleLenker Technologie-Lösungen",
-                "header_subtitle": "Alles aus einer Hand für KI, IoT und vollständige Technologieintegration",
-                "intro_title": "Unser Versprechen: Qualität, Transparenz und langfristige Partnerschaft",
-                "intro_text": "Jedes Projekt ist nicht nur ein Vertrag, sondern der Beginn einer langfristigen Beziehung. Wir arbeiten partnerschaftlich mit Ihnen zusammen.",
-                "feature1": "✅ 100% Zufriedenheitsgarantie",
-                "feature2": "✅ Kostenlose technische Beratung",
-                "feature3": "✅ 24/7 Support",
-                "services_title": "Unsere Dienstleistungen",
-                "service1_title": "KI und Maschinelles Lernen",
-                "service1_desc": "KI-Modelltraining in jeder Sprache, Chatbots und intelligente Systeme",
-                "service1_item1": "Mehrsprachiges KI-Modelltraining",
-                "service1_item2": "Intelligente Chatbots",
-                "service1_item3": "Entwicklung benutzerdefinierter Suchmaschinen",
-                "service2_title": "CCTV- und Sicherheitssysteme",
-                "service2_desc": "KI-verbesserte Sicherheitssysteme, Kameranetzwerke und Überwachung",
-                "service2_item1": "HD-IP-Kamera-Integration",
-                "service2_item2": "Videoanalyse und KI-Überwachung",
-                "service2_item3": "Komplette Netzwerkinfrastrukturplanung",
-                "service3_title": "GPS- und Ortungssysteme",
-                "service3_desc": "Geofencing, Standortverfolgung und GPS-basierte Lösungen",
-                "service3_item1": "Geofencing-Lösungen",
-                "service3_item2": "Standortbasierte Auslösung",
-                "service3_item3": "Echtzeit-Standortverfolgung",
-                "service4_title": "Hardware-Integration",
-                "service4_desc": "Nahtlose Integration aller Arten von Hardware und Software",
-                "service4_item1": "IoT-Geräteintegration",
-                "service4_item2": "Sensor-Netzwerkbereitstellung",
-                "service4_item3": "Entwicklung eingebetteter Systeme",
-                "service5_title": "Webentwicklung",
-                "service5_desc": "Moderne Websites, Anwendungen und Online-Systeme",
-                "service5_item1": "Professionelle Websites",
-                "service5_item2": "E-Commerce-Plattformen",
-                "service5_item3": "Echtzeit-Webanwendungen",
-                "service6_title": "IP-Kommunikationssysteme",
-                "service6_desc": "IP-PBX, Walkie-Talkie und moderne Kommunikationssysteme",
-                "service6_item1": "IP-PBX-Systembereitstellung",
-                "service6_item2": "VoIP-Integration",
-                "service6_item3": "Walkie-Talkie-Netzwerke",
-                "contact_title": "Besprechen Sie Ihr Projekt",
-                "contact_subtitle": "Von der kostenlosen Beratung bis zur vollständigen Umsetzung - wir sind für Sie da",
-                "email_btn": "E-Mail senden",
-                "whatsapp_btn": "Kontakt per WhatsApp",
-                "direct_contact": "Direkter Kontakt:",
-                "response_time": "⏰ Durchschnittliche Antwortzeit: 15 Minuten",
-                "footer_text": "© 2023 TeleLenker Technologie-Lösungen. Alle Rechte vorbehalten."
+        // Load products from localStorage
+        function loadProducts() {
+            const products = JSON.parse(localStorage.getItem('telelenker-products')) || [];
+            const productsGrid = document.getElementById('productsGrid');
+            
+            if (products.length === 0) {
+                return; // Keep the default message
             }
-        };
 
-        // Language management
-        let currentLang = 'en';
-
-        // Initialize language
-        document.addEventListener('DOMContentLoaded', function() {
-            // Set default language
-            changeLanguage('en');
-            
-            // Language switcher functionality
-            const langBtn = document.getElementById('langBtn');
-            const langDropdown = document.getElementById('langDropdown');
-            const langOptions = document.querySelectorAll('.lang-option');
-            
-            // Toggle dropdown
-            langBtn.addEventListener('click', function() {
-                langDropdown.classList.toggle('show');
-            });
-            
-            // Close dropdown when clicking outside
-            document.addEventListener('click', function(event) {
-                if (!event.target.closest('.language-switcher')) {
-                    langDropdown.classList.remove('show');
-                }
-            });
-            
-            // Language selection
-            langOptions.forEach(option => {
-                option.addEventListener('click', function() {
-                    const lang = this.getAttribute('data-lang');
-                    changeLanguage(lang);
-                    langDropdown.classList.remove('show');
-                });
-            });
-        });
-
-        // Change language function
-        function changeLanguage(lang) {
-            currentLang = lang;
-            
-            // Update current language display
-            document.getElementById('currentLang').textContent = 
-                document.querySelector(`.lang-option[data-lang="${lang}"]`).textContent;
-            
-            // Update text content
-            const elements = document.querySelectorAll('[data-key]');
-            elements.forEach(element => {
-                const key = element.getAttribute('data-key');
-                if (translations[lang] && translations[lang][key]) {
-                    element.textContent = translations[lang][key];
-                }
-            });
-            
-            // Update direction for RTL languages
-            if (lang === 'ur' || lang === 'ar') {
-                document.body.setAttribute('dir', 'rtl');
-                document.documentElement.setAttribute('lang', lang);
-                document.documentElement.setAttribute('dir', 'rtl');
-            } else {
-                document.body.setAttribute('dir', 'ltr');
-                document.documentElement.setAttribute('lang', lang);
-                document.documentElement.setAttribute('dir', 'ltr');
-            }
-            
-            // Save language preference
-            localStorage.setItem('preferredLang', lang);
+            productsGrid.innerHTML = products.map(product => `
+                <div class="product-card">
+                    <div class="product-image">
+                        ${product.image ? 
+                            `<img src="${product.image}" alt="${product.name}" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\\'fas fa-image\\'></i>'">` : 
+                            '<i class="fas fa-image"></i>'
+                        }
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">${product.category}</span>
+                        <h3>${product.name}</h3>
+                        <p>${product.description}</p>
+                        <div class="product-price">
+                            $${product.price} 
+                            ${product.oldPrice ? `<span class="product-old-price">$${product.oldPrice}</span>` : ''}
+                        </div>
+                        <button class="buy-btn" onclick="alert('Product: ${product.name}\\nPrice: $${product.price}\\n\\nContact us to purchase!')">
+                            Buy Now
+                        </button>
+                    </div>
+                </div>
+            `).join('');
         }
 
-        // Load saved language preference
-        window.addEventListener('load', function() {
-            const savedLang = localStorage.getItem('preferredLang');
-            if (savedLang) {
-                changeLanguage(savedLang);
-            }
-        });
+        // Initialize
+        document.addEventListener('DOMContentLoaded', loadProducts);
     </script>
 </body>
 </html>
