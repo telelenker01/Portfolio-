@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeleLenker | AI & Technical Solutions Provider</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --accent: #f1f5f9;
+            --text: #1e293b;
+            --success: #10b981;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+        }
+
+        .tech-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 4rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .tech-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .tech-header p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* کامیاب کاروباری تعلقات سیکشن */
+        .business-commitment {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 15px;
+            margin: 3rem 0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .commitment-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .commitment-header h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .commitment-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .commitment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .commitment-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .commitment-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .commitment-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .commitment-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .commitment-card p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .cta-section {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2.5rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .guarantee-badge {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .guarantee-badge span {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* پروڈکٹ گرڈ */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .product-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--primary);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .tech-badge {
+            background: var(--primary);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-card h3 {
+            color: var(--primary);
+            margin: 1rem 0;
+            font-size: 1.4rem;
+        }
+
+        .product-card ul {
+            padding-right: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        .product-card li {
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        /* ویب سائٹ جنریٹر سیکشن */
+        .generator-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin: 3rem 0;
+        }
+
+        .generator-intro {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .generator-intro h2 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .generator-intro p {
+            font-size: 1.1rem;
+            color: var(--text);
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .features-list {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin: 1.5rem 0;
+        }
+
+        .feature {
+            background: var(--accent);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        .support-note {
+            background: #e0f2fe;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-right: 4px solid var(--primary);
+            margin-top: 2rem;
+        }
+
+        .support-note p {
+            margin: 0;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: var(--text);
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .generate-btn {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: block;
+            margin: 0 auto;
+            font-weight: 600;
+        }
+
+        .generate-btn:hover {
+            background: var(--secondary);
+        }
+
+        #generatorMessage {
+            display: none;
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: #d1fae5;
+            border-radius: 8px;
+            border: 1px solid #10b981;
+        }
+
+        /* واٹس ایپ CTA */
+        .whatsapp-cta {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .cta-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-content p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .whatsapp-btn {
+            background: white;
+            color: #25D366;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+
+        .response-time {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* رابطہ سیکشن */
+        .contact-section {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .contact-section h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .contact-btn {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-btn.email {
+            background: #ea4335;
+        }
+
+        .contact-btn.whatsapp {
+            background: #25D366;
+        }
+
+        .contact-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .direct-contact {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .direct-contact p {
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        /* فوٹر */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: #1e293b;
+            color: white;
+            margin-top: 4rem;
+        }
+
+        /* ریسپانسیو ڈیزائن */
+        @media (max-width: 768px) {
+            .tech-header h1 {
+                font-size: 2rem;
+            }
+            
+            .tech-header p {
+                font-size: 1.1rem;
+            }
+            
+            .business-commitment {
+                padding: 2rem 1rem;
+            }
+            
+            .commitment-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .guarantee-badge {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .guarantee-badge span {
+                text-align: center;
+            }
+            
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .generator-section {
+                padding: 2rem 1.5rem;
+            }
+            
+            .features-list {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .contact-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .contact-btn {
+                width: 80%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ٹیکنیکل ہیڈر -->
+    <header class="tech-header">
+        <h1>TeleLenker Technical Solutions</h1>
+        <p>AI-Driven Hardware & Software Integration | Custom Machine Learning Solutions</p>
+    </header>
+
+    <div class="container">
+        <!-- کامیاب کاروباری تعلقات سیکشن -->
+        <section class="business-commitment">
+            <div class="commitment-header">
+                <h2>ہمارا وعدہ: معیار، شفافیت، اور دیرپا شراکت</h2>
+                <p>ہر پراجیکٹ محض ایک معاہدہ نہیں، بلکہ ایک طویل المدتی تعلقات کا آغاز ہے</p>
+            </div>
+
+            <div class="commitment-grid">
+                <div class="commitment-card">
+                    <div class="icon">💡</div>
+                    <h3>مفت تکنیکی مشاورت</h3>
+                    <p>آپ کا پہلا مشورہ ہمیشہ مفت۔ ہم آپ کے منصوبے کا تجزیہ کر کے بہترین ٹیکنالوجی حل تجویز کرتے ہیں، بغیر کسی پابندی کے۔</p>
+                </div>
+
+                <div class="commitment-card">
+                    <div class="icon">⚡</div>
+                    <h3>فوری عملدرآمد</h3>
+                    <p>ہمارا آٹومیٹڈ ویب سائٹ جنریٹر آپ کو منٹوں میں پیشہ ورانہ ویب سائٹ فراہم کرتا ہے - کوئی انتظار نہیں، کوئی پیچیدگی نہیں۔</p>
+                </div>
+
+                <div class="commitment-card">
+                    <div class="icon">🤝</div>
+                    <h3>مسلسل تعاون</h3>
+                    <p>ہماری ٹیکنیکل سپورٹ ٹیم آپ کے ساتھ ہر قدم پر موجود۔ کسی بھی پیچیدگی پر فوری واٹس ایپ سپورٹ۔</p>
+                </div>
+
+                <div class="commitment-card">
+                    <div class="icon">🎯</div>
+                    <h3>شفاف معیار</h3>
+                    <p>اعلیٰ ترین معیار، مناسب قیمت، اور قابل بھروسہ خدمات - یہ ہمارا غیرمتزلزل اصول ہے۔</p>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <h3>آج ہی اپنے ڈیجیٹل سفر کا آغاز کریں</h3>
+                <p>ہمارا آٹومیٹڈ ویب سائٹ بلڈر استعمال کریں اور منٹوں میں اپنی ویب سائٹ حاصل کریں۔ اگر آپ کو کسی بھی مرحلے میں دشواری پیش آئے، ہماری ٹیم فوری رہنمائی کے لیے تیار ہے۔</p>
+                
+                <div class="guarantee-badge">
+                    <span>✅ 100% سٹسفیکشن گارنٹی</span>
+                    <span>✅ مفت تکنیکی مشاورت</span>
+                    <span>✅ 24/7 سپورٹ</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ہمارے ٹیکنیکل پروڈکٹس -->
+        <section>
+            <h2 style="text-align: center; color: var(--primary); margin-bottom: 3rem; font-size: 2.2rem;">ہمارے ٹیکنیکل حل</h2>
+            
+            <div class="product-grid">
+                <!-- CCTV Solutions -->
+                <div class="product-card">
+                    <span class="tech-badge">CCTV & Networking</span>
+                    <h3>سی سی ٹی وی کیمرہ نیٹ ورک انٹیگریشن</h3>
+                    <p>مکمل سکیورٹی سسٹم ڈیزائن اینڈ امپلیمینٹیشن۔ IP کیمرہ نیٹ ورکنگ، ویڈیو اینالیٹکس، اور ریموٹ مانیٹرنگ سولیوشنز۔</p>
+                    <ul>
+                        <li>HD IP کیمرہ انٹیگریشن</li>
+                        <li>نیٹ ورک انفراسٹرکچر ڈیزائن</li>
+                        <li>ویڈیو اینالیٹکس اینڈ AI مانیٹرنگ</li>
+                    </ul>
+                </div>
+
+                <!-- Machine Learning Camera -->
+                <div class="product-card">
+                    <span class="tech-badge">Computer Vision</span>
+                    <h3>مشین لرننگ کیمرہ سسٹمز</h3>
+                    <p>کسٹم AI ماڈلز فار رئیل ٹائم ویڈیو اینالیسس۔ آبجیکٹ ڈٹیکشن، فیس ریکگنیشن، اینڈ بیماری وائر اینالیٹکس۔</p>
+                    <ul>
+                        <li>کسٹم آبجیکٹ ڈٹیکشن ماڈلز</li>
+                        <li>رئیل ٹائم اینالیٹکس</li>
+                        <li>ایج ڈیوائسز آپٹیمائزیشن</li>
+                    </ul>
+                </div>
+
+                <!-- GPS Solutions -->
+                <div class="product-card">
+                    <span class="tech-badge">GPS Technology</span>
+                    <h3>جی پی ایس ٹریگر سسٹمز</h3>
+                    <p>لوکیشن بیسڈ آٹومیشن اینڈ ٹریگرنگ۔ جیو فینسنگ، لوکیشن انٹیلی جنس، اینڈ سپیشل آٹومیشن۔</p>
+                    <ul>
+                        <li>جیو فینسنگ سولیوشنز</li>
+                        <li>لوکیشن بیسڈ ٹریگرنگ</li>
+                        <li>رئیل ٹائم لوکیشن ٹریکنگ</li>
+                    </ul>
+                </div>
+
+                <!-- IP Systems -->
+                <div class="product-card">
+                    <span class="tech-badge">IP Telephony</span>
+                    <h3>آئی پی پی اے بی ایکس اینڈ واکی ٹاکی</h3>
+                    <p>مکمل IP بیسڈ کمیونیکیشن سسٹمز۔ VoIP سولیوشنز، IP-PBX انسٹالیشن، اینڈ واکی ٹاکی سسٹمز۔</p>
+                    <ul>
+                        <li>IP-PBX سسٹم ڈپلائیمنٹ</li>
+                        <li>VoIP انٹیگریشن</li>
+                        <li>واکی ٹاکی نیٹ ورکنگ</li>
+                    </ul>
+                </div>
+
+                <!-- AI & Chatbots -->
+                <div class="product-card">
+                    <span class="tech-badge">AI Development</span>
+                    <h3>ملٹی لینگویج AI ماڈلز اینڈ چیٹ بوٹس</h3>
+                    <p>کسٹم AI ماڈل ٹریننگ فار آل لینگویجز۔ انٹیلیجنٹ سرچ انجنز، چیٹ بوٹ ڈویلپمنٹ، اینڈ نیچرل لینگویج پروسیسنگ۔</p>
+                    <ul>
+                        <li>ملٹی لینگویج AI ماڈل ٹریننگ</li>
+                        <li>کسٹم سرچ انجن ڈویلپمنٹ</li>
+                        <li>انٹیلیجنٹ چیٹ بوٹس</li>
+                    </ul>
+                </div>
+
+                <!-- Hardware Integration -->
+                <div class="product-card">
+                    <span class="tech-badge">Hardware Solutions</span>
+                    <h3>ہارڈویئر انٹیگریشن سروسز</h3>
+                    <p>کمپلیکس ہارڈویئر اینڈ سوفٹ ویئر انٹیگریشن۔ IoT ڈیوائس مینیجمنٹ، سینسر نیٹ ورکنگ، اینڈ ایمبیڈڈ سسٹمز۔</p>
+                    <ul>
+                        <li>IoT ڈیوائس انٹیگریشن</li>
+                        <li>سینسر نیٹ ورک ڈپلائیمنٹ</li>
+                        <li>ایمبیڈڈ سسٹم ڈویلپمنٹ</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- آٹومیٹک ویب سائٹ جنریٹر -->
+        <section class="generator-section">
+            <div class="generator-intro">
+                <h2>🚀 منٹوں میں اپنی ویب سائٹ حاصل کریں</h2>
+                <p>ہمارا جدید ترین آٹومیٹڈ سسٹم آپ کے لیے پیشہ ورانہ ویب سائٹ تیار کرے گا۔ بس چند تفصیلات درج کریں، اور ہم آپ کے ای میل پر مکمل ویب سائٹ کا لنک بھیج دیں گے۔</p>
+                
+                <div class="features-list">
+                    <div class="feature">
+                        <strong>⏱️ فوری ترین عمل:</strong> روایتی طریقوں سے 90% تیز
+                    </div>
+                    <div class="feature">
+                        <strong>🎨 جدید ڈیزائن:</strong> خودکار طور پر ریسپانسیو اور جدید
+                    </div>
+                    <div class="feature">
+                        <strong>🆓 مکمل مفت:</strong> پہلی ویب سائٹ بالکل مفت
+                    </div>
+                </div>
+
+                <div class="support-note">
+                    <p>📞 <strong>کسی بھی مسئلے پر فوری رابطہ:</strong> اگر آپ کو کوئی دشواری پیش آئے، ہماری ٹیکنیکل ٹیم فوری رہنمائی کے لیے موجود ہے۔ واٹس ایپ پر رابطہ کریں اور اپنا مسئلہ شیئر کریں۔</p>
+                </div>
+            </div>
+            
+            <form id="websiteGenerator">
+                <div class="form-group">
+                    <label for="userEmail">آپ کا ای میل ایڈریس</label>
+                    <input type="email" id="userEmail" required placeholder="example@gmail.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="siteTitle">ویب سائٹ کا عنوان</label>
+                    <input type="text" id="siteTitle" required placeholder="مثلاً: میری کمپنی کا نام">
+                </div>
+
+                <div class="form-group">
+                    <label for="siteDescription">ویب سائٹ کی تفصیل</label>
+                    <textarea id="siteDescription" rows="4" required placeholder="اپنی ویب سائٹ کے بارے میں مختصر تفصیل"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="siteType">ویب سائٹ کی قسم</label>
+                    <select id="siteType" required>
+                        <option value="">منتخب کریں</option>
+                        <option value="business">بزنس / کمپنی</option>
+                        <option value="portfolio">پورٹ فولیو</option>
+                        <option value="ecommerce">ای کامرس</option>
+                        <option value="blog">بلاگ</option>
+                        <option value="personal">ذاتی ویب سائٹ</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="colorScheme">رنگ کا انتخاب</label>
+                    <select id="colorScheme">
+                        <option value="blue">نیلا</option>
+                        <option value="green">سبز</option>
+                        <option value="purple">ارغوانی</option>
+                        <option value="red">سرخ</option>
+                        <option value="teal">ٹیل</option>
+                    </select>
+                </div>
+
+                <div style="text-align: center;">
+                    <button type="submit" class="generate-btn">ویب سائٹ جنریٹ کریں</button>
+                </div>
+            </form>
+
+            <div id="generatorMessage" style="display: none;">
+                <p>آپ کی ویب سائٹ جنریٹ ہو رہی ہے۔ چند منٹوں میں آپ کے ای میل پر لنک بھیج دیا جائے گا۔</p>
+            </div>
+        </section>
+
+        <!-- واٹس ایپ CTA -->
+        <section class="whatsapp-cta">
+            <div class="cta-content">
+                <h3>📲 فوری تکنیکی مدد چاہیے؟</h3>
+                <p>ہماری ٹیم آپ کے سوالات کے فوری جوابات دینے کے لیے تیار ہے۔ ابھی واٹس ایپ پر رابطہ کریں۔</p>
+                <a href="https://wa.me/923152820296" class="whatsapp-btn">
+                    💬 واٹس ایپ پر بات کریں
+                </a>
+                <p class="response-time">⏰ اوسط جوابی وقت: 15 منٹ</p>
+            </div>
+        </section>
+
+        <!-- رابطہ سیکشن -->
+        <section class="contact-section">
+            <h3>ٹیکنیکل سپورٹ اینڈ کنسلٹیشن</h3>
+            <p>کسی بھی ٹیکنالوجی پراجیکٹ کے لیے ہم سے رابطہ کریں</p>
+            
+            <div class="contact-buttons">
+                <a href="mailto:telelenker@gmail.com" class="contact-btn email">
+                    ✉️ ای میل کریں
+                </a>
+                <a href="https://wa.me/923152820296" class="contact-btn whatsapp">
+                    💬 واٹس ایپ پر رابطہ کریں
+                </a>
+            </div>
+            
+            <div class="direct-contact">
+                <p><strong>براہ راست رابطہ:</strong></p>
+                <p>ای میل: telelenker@gmail.com</p>
+                <p>واٹس ایپ: 00923152820296</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- فوٹر -->
+    <footer>
+        <p>&copy; 2023 TeleLenker Technical Solutions. تمام حقوق محفوظ ہیں۔</p>
+    </footer>
+
+    <script>
+        // ویب سائٹ جنریٹر کا بنیادی فنکشن
+        document.getElementById('websiteGenerator').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const userEmail = document.getElementById('userEmail').value;
+            const siteTitle = document.getElementById('siteTitle').value;
+            const siteType = document.getElementById('siteType').value;
+            
+            // میسج دکھائیں
+            document.getElementById('generatorMessage').style.display = 'block';
+            
+            // فارم کو ری سیٹ کریں
+            document.getElementById('websiteGenerator').reset();
+            
+            // یہاں آپ اصل کوڈ جنریشن کا منطقہ شامل کر سکتے ہیں
+            // فی الحال صرف ایک کنفرمیشن میسج دکھا رہے ہیں
+            
+            setTimeout(() => {
+                alert(`آپ کی ویب سائٹ کی درخواست موصول ہو گئی ہے۔\nعنوان: ${siteTitle}\nقسم: ${siteType}\nلنک جلد آپ کے ای میل پر بھیج دیا جائے گا: ${userEmail}`);
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
